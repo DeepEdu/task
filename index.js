@@ -2,10 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 app.use(cors());
 app.use(express.json());
 require("dotenv").config();
+app.use(bodyParser.json());
 
 mongoose
   .connect(process.env.MONGODB_URL)
