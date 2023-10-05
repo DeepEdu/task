@@ -4,6 +4,7 @@ const User = require("../model/user");
 const Post = require("../model/post");
 const uuid = require("uuid");
 
+// Create User Signup API
 router.route("/signup").post(async (req, res) => {
   const { name, email } = req.body;
 
@@ -45,11 +46,11 @@ router.route("/deletepost/:postId").delete(async (req, res) => {
   console.log(postId);
   try {
     const post = await Post.findOne({ postId });
-
+    // Check if the post exists
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }
-
+    // if Exist then deleting
     await Post.findOneAndDelete({ postId });
 
     res.status(200).json({ message: "Successful post deletion" });
